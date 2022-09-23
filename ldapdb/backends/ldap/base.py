@@ -365,6 +365,10 @@ class DatabaseWrapper(BaseDatabaseWrapper):
                     if dn is not None:
                         yield dn, attrs
 
+                # server does not support controls, stop pagination here
+                if not server_controls:
+                    break
+
                 page_control = page_controls[0]
                 page += 1
                 if page_control.cookie:
